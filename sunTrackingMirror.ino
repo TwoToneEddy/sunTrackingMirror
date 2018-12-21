@@ -14,12 +14,12 @@ void setup() {
   // Initialize the rtc object
   rtc.begin();
   
-  currentTime.iYear = 2018;
-  currentTime.iMonth = 12;
-  currentTime.iDay = 19;
-  currentTime.dHours = 13.0;
-  currentTime.dMinutes =4.0;
-  currentTime.dSeconds = 0.0;
+  currentTime.iYear = rtc.getYearInt();
+  currentTime.iMonth = rtc.getMonthInt();
+  currentTime.iDay = rtc.getDayInt();
+  currentTime.dHours = rtc.getHourD();
+  currentTime.dMinutes =rtc.getMinuteD();
+  currentTime.dSeconds = rtc.getSecondD();
   
   currentLocation.dLongitude = -1.485520;
   currentLocation.dLatitude = 51.783710;
@@ -33,19 +33,9 @@ void setup() {
 }
 
 void loop() {
-  /*
+  
   Serial.println(result.dInclinationAngle);
   Serial.println(result.dAzimuth);
-  delay(1000);*/
+  delay(1000);
   
-  
-  // Send date
-  Serial.print(rtc.getDayStr());
-  Serial.print(" -- ");
-
-  // Send time
-  Serial.println(rtc.getTimeStr());
-  
-  // Wait one second before repeating :)
-  delay (1000);
 }
