@@ -86,8 +86,15 @@ class DS3231
 		void	setDOW(uint8_t dow);
 
 		char	*getTimeStr(uint8_t format=FORMAT_LONG);
+
+		double	getHourD(uint8_t format=FORMAT_LONG);
+		double	getMinuteD(uint8_t format=FORMAT_LONG);
+		double	getSecondD(uint8_t format=FORMAT_LONG);
+
 		char	*getDateStr(uint8_t slformat=FORMAT_LONG, uint8_t eformat=FORMAT_LITTLEENDIAN, char divider='.');
-		int	getDayStr(uint8_t slformat=FORMAT_LONG, uint8_t eformat=FORMAT_LITTLEENDIAN, char divider='.');
+		int	getDayInt(uint8_t slformat=FORMAT_LONG, uint8_t eformat=FORMAT_LITTLEENDIAN, char divider='.');
+		int	getMonthInt(uint8_t slformat=FORMAT_LONG, uint8_t eformat=FORMAT_LITTLEENDIAN, char divider='.');
+		int	getYearInt(uint8_t slformat=FORMAT_LONG, uint8_t eformat=FORMAT_LITTLEENDIAN, char divider='.');
 		char	*getDOWStr(uint8_t format=FORMAT_LONG);
 		char	*getMonthStr(uint8_t format=FORMAT_LONG);
 		long	getUnixTime(Time t);

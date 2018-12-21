@@ -155,6 +155,48 @@ char *DS3231::getTimeStr(uint8_t format)
 	return (char*)&output;
 }
 
+double DS3231::getHourD(uint8_t format)
+{
+	static char output[] = "xx";
+	Time t;
+	t=getTime();
+	if (t.hour<10)
+		output[0]=48;
+	else
+		output[0]=char((t.hour / 10)+48);
+	output[1]=char((t.hour % 10)+48);
+	
+	return (double)atoi(output);
+}
+
+double DS3231::getMinuteD(uint8_t format)
+{
+	static char output[] = "xx";
+	Time t;
+	t=getTime();
+	if (t.min<10)
+		output[0]=48;
+	else
+		output[0]=char((t.min / 10)+48);
+	output[1]=char((t.min % 10)+48);
+	
+	return (double)atoi(output);
+}
+
+double DS3231::getSecondD(uint8_t format)
+{
+	static char output[] = "xx";
+	Time t;
+	t=getTime();
+	if (t.sec<10)
+		output[0]=48;
+	else
+		output[0]=char((t.sec / 10)+48);
+	output[1]=char((t.sec % 10)+48);
+	output[2]=0;
+	
+	return (double)atoi(output);
+}
 char *DS3231::getDateStr(uint8_t slformat, uint8_t eformat, char divider)
 {
 	static char output[] = "xxxxxxxxxx";
@@ -270,7 +312,7 @@ char *DS3231::getDateStr(uint8_t slformat, uint8_t eformat, char divider)
 	return (char*)&output;
 }
 
-int DS3231::getDayStr(uint8_t slformat, uint8_t eformat, char divider)
+int DS3231::getDayInt(uint8_t slformat, uint8_t eformat, char divider)
 {
 	static char output[] = "xx";
 	int yr, offset;
@@ -287,6 +329,34 @@ int DS3231::getDayStr(uint8_t slformat, uint8_t eformat, char divider)
 	return atoi(output);
 }
 
+int DS3231::getMonthInt(uint8_t slformat, uint8_t eformat, char divider)
+{
+	static char output[] = "xx";
+	int yr, offset;
+	Time t;
+	t=getTime();
+	if (t.mon<10)
+		output[0]=48;
+	else
+		output[0]=char((t.mon / 10)+48);
+	output[1]=char((t.mon % 10)+48);
+	return atoi(output);
+}
+
+int DS3231::getYearInt(uint8_t slformat, uint8_t eformat, char divider)
+{
+	static char output[] = "xxxxxxxxxx";
+	int yr, offset;
+	Time t;
+	t=getTime();
+	yr=t.year;
+	output[0]=char((yr / 1000)+48);
+	output[1]=char(((yr % 1000) / 100)+48);
+	output[2]=char(((yr % 100) / 10)+48);
+	output[3]=char((yr % 10)+48);
+	output[4]=0;
+	return atoi(output);
+}
 char *DS3231::getDOWStr(uint8_t format)
 {
 	char *output = "xxxxxxxxxx";
